@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
+git clone https://github.com/endeavouros-team/endeavouros-i3wm-setup.git
+cd endeavouros-i3wm-setup/etc/skel/
+cp -R .config ~/                                            
+chmod -R +x ~/.config/i3/scripts
+cp .Xresources .profile xed.dconf ~/
+dbus-launch dconf load / < ~/xed.dconf
+rm xed.dconf
+cd ..
+rm -rf endeavouros-i3wm-setup
+wget https://raw.githubusercontent.com/endeavouros-team/EndeavourOS-packages-lists/master/i3
+sudo pacman -S --needed - < i3
+rm i3
+#eos-packagelist --install "i3-Window-Manager"
